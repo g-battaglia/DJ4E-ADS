@@ -24,6 +24,9 @@ urlpatterns = [
     views.AddFavoriteView.as_view(), name='ad_favorite'),
     path('ad/<int:pk>/unfavorite',
     views.DeleteFavoriteView.as_view(), name='ad_unfavorite'),
+
+    # Tag:
+    path('tag/<slug:slug>/', TagListView.as_view(), name='tag_view')
 ]
 
 # We use reverse_lazy in urls.py to delay looking up the view until all the paths are defined

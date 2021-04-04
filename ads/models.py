@@ -5,6 +5,7 @@ from django.db import models
 from django.db import models
 from django.core.validators import MinLengthValidator
 from django.conf import settings
+from taggit.managers import TaggableManager # Tags
 
 class Ad(models.Model) :
     title = models.CharField(
@@ -30,6 +31,12 @@ class Ad(models.Model) :
     # * Favorites:
     favorites = models.ManyToManyField(settings.AUTH_USER_MODEL,
         through='Fav', related_name='favorite_ads')
+
+    # Tags:
+    
+    tags = TaggableManager()
+
+    
 
     # Shows up in the admin list
     def __str__(self):

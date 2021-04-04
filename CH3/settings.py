@@ -45,11 +45,13 @@ INSTALLED_APPS = [
     'crispy_forms',  
     'rest_framework', 
     'social_django',  
-    'taggit',
+    'taggit',                # Tags
     'home.apps.HomeConfig',
     
-    # Home
+    # Home:
     'ads',
+
+    
 ]
 
 # When we get to crispy forms :)
@@ -208,3 +210,6 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Case insensitive:
+TAGGIT_CASE_INSENSITIVE = True

@@ -83,12 +83,12 @@ class adDetailView(OwnerDetailView):
 
 class adCreateView(OwnerCreateView):
     model = Ad
-    fields = ['title', 'price','text', 'image']
+    fields = ['title', 'price','text', 'tags', 'image']
 
 
 class adUpdateView(OwnerUpdateView):
     model = Ad
-    fields = ['title', 'price','text', 'image']
+    fields = ['title', 'price','text', 'tags', 'image']
 
 
 class adDeleteView(OwnerDeleteView):
@@ -138,3 +138,13 @@ class DeleteFavoriteView(LoginRequiredMixin, View):
         return HttpResponse()
 
 
+# Tags:
+class TagListView(OwnerListView):
+    model = Ad
+    template_name = 'ads/tag_list.html'
+    def get_context_data(self, *args, **kwargs):
+        print(self.kwargs, self.args)
+        context = super().get_context_data()
+        Ad_list = Ad.objects.filter(tags__slug=self.kwargs['slug'])
+        context['ads'] = Ad_list
+        return context
